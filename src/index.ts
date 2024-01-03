@@ -1,8 +1,11 @@
 import { book } from "./interfaces"
 
 const mainEl: HTMLElement = document.querySelector('main')
+const searchEl: HTMLInputElement = document.getElementById('search') as HTMLInputElement
+const resultsEl: HTMLElement = document.querySelector('.results')
 
 const colours: string[] = ['242, 201, 76', '242, 153, 74', '235, 87, 87', '155, 81, 224', '86, 204, 242', '47, 128, 237', '111, 207, 151', '39, 174, 96']
+const theAlphabet: string[] = [...'qwertyuiopasdfghjklzxcvbnm']
 
 async function getData(): Promise<book[]> {
     let data: Response = await fetch('https://my-json-server.typicode.com/zocom-christoffer-wallenberg/books-api/books')
@@ -11,7 +14,7 @@ async function getData(): Promise<book[]> {
 }
 
 const books: book[] = await getData()
-
+console.log(books)
 books.forEach(book => {
     let bookEl: HTMLAnchorElement = document.createElement('a')
     bookEl.href = "./book.html"
@@ -21,6 +24,20 @@ books.forEach(book => {
     bookEl.addEventListener('click', () => {
         let bookObj: string = JSON.stringify(book)
         localStorage.setItem('clickedBook', bookObj)
-        console.log(localStorage)
+    })
+})
+
+searchEl.addEventListener('keyup', (e) => {
+    resultsEl.innerHTML = ''
+    books.forEach(book => {
+        if (book.title.toLowerCase().includes(searchEl.value.toLowerCase()) && theAlphabet.includes(e.key)) {
+            let resultEl: HTMLElement = document.createElement('li')
+            resultEl.innerHTML = `<a href="./book.html">${book.title}</a>`
+            resultsEl.appendChild(resultEl)
+            resultEl.addEventListener('click', () => {
+                let bookObj: string = JSON.stringify(book)
+                localStorage.setItem('clickedBook', bookObj)
+            })
+        }
     })
 })

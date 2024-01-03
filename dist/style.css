@@ -25,6 +25,18 @@
     margin: auto;
 }
 
+.search-area {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+}
+
+li {
+    list-style: none;
+    text-align: end;
+    padding: 0.25rem;
+}
+
 .main_index article {
     height: 100%;
     display: grid;
