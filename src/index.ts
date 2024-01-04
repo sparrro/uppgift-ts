@@ -14,26 +14,26 @@ async function getData(): Promise<book[]> {
 }
 
 const books: book[] = await getData()
-books.forEach(book => {
+books.forEach((book):void => {
     let bookEl: HTMLAnchorElement = document.createElement('a')
     bookEl.href = "./book.html"
     bookEl.innerHTML = `<article><div class="book-line"></div><h2>${book.title}</h2><h3>${book.author}</h3></article>`
     bookEl.style.backgroundColor = `rgb(${colours[book.id-1]})`
     mainEl.appendChild(bookEl)
-    bookEl.addEventListener('click', () => {
+    bookEl.addEventListener('click', ():void => {
         let bookObj: string = JSON.stringify(book)
         localStorage.setItem('clickedBook', bookObj)
     })
 })
 
-searchEl.addEventListener('keyup', (e) => {
+searchEl.addEventListener('keyup', (e):void => {
     resultsEl.innerHTML = ''
-    books.forEach(book => {
+    books.forEach((book):void => {
         if (book.title.toLowerCase().includes(searchEl.value.toLowerCase()) && theAlphabet.includes(e.key)) {
             let resultEl: HTMLElement = document.createElement('li')
             resultEl.innerHTML = `<a href="./book.html">${book.title}</a>`
             resultsEl.appendChild(resultEl)
-            resultEl.addEventListener('click', () => {
+            resultEl.addEventListener('click', ():void => {
                 let bookObj: string = JSON.stringify(book)
                 localStorage.setItem('clickedBook', bookObj)
             })

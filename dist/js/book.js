@@ -3,7 +3,6 @@ const infoEl = document.querySelector('.book-info');
 const bodyEl = document.querySelector('body');
 const colours = ['242, 201, 76', '242, 153, 74', '235, 87, 87', '155, 81, 224', '86, 204, 242', '47, 128, 237', '111, 207, 151', '39, 174, 96'];
 const bookObj = JSON.parse(localStorage.clickedBook);
-console.log(bookObj);
 document.title = bookObj.title;
 bodyEl.style.backgroundColor = '#222222';
 bookEl.style.backgroundColor = `rgb(${colours[bookObj.id - 1]})`;

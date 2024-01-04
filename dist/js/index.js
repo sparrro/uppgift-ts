@@ -9,8 +9,7 @@ async function getData() {
     return response;
 }
 const books = await getData();
-console.log(books);
-books.forEach(book => {
+books.forEach((book) => {
     let bookEl = document.createElement('a');
     bookEl.href = "./book.html";
     bookEl.innerHTML = `<article><div class="book-line"></div><h2>${book.title}</h2><h3>${book.author}</h3></article>`;
@@ -23,7 +22,7 @@ books.forEach(book => {
 });
 searchEl.addEventListener('keyup', (e) => {
     resultsEl.innerHTML = '';
-    books.forEach(book => {
+    books.forEach((book) => {
         if (book.title.toLowerCase().includes(searchEl.value.toLowerCase()) && theAlphabet.includes(e.key)) {
             let resultEl = document.createElement('li');
             resultEl.innerHTML = `<a href="./book.html">${book.title}</a>`;
