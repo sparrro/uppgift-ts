@@ -14,7 +14,6 @@ async function getData(): Promise<book[]> {
 }
 
 const books: book[] = await getData()
-console.log(books)
 books.forEach(book => {
     let bookEl: HTMLAnchorElement = document.createElement('a')
     bookEl.href = "./book.html"

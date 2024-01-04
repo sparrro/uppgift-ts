@@ -79,9 +79,6 @@ li {
     background-image: linear-gradient(to top right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
 }
 
-
-
-
 .main_book {
     display: grid;
     grid-template-columns: 25rem 25rem;
